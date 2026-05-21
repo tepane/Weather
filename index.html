@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>기후 데이터 기반 학습 지수</title>
+  <meta name="description" content="날씨와 대기질 데이터를 기반으로 집중력, 암기력, 각성도 및 과목별 학습 적정도를 계산하는 웹 서비스" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav">
+      <div class="brand">Study Weather Index</div>
+      <a href="#research" class="nav-link">근거</a>
+    </nav>
+    <section class="hero-grid">
+      <div>
+        <p class="eyebrow">기상 빅데이터 기반 학습 지수 프로그램</p>
+        <h1>오늘 날씨에 맞는 공부 전략을 계산합니다.</h1>
+        <p class="lead">기온, 습도, 강수, PM2.5를 반영해 집중·암기·각성 지수와 수학·영어·암기과목 적정도를 산출합니다. 점수는 진단이 아니라 학습 계획 보조 지표입니다.</p>
+      </div>
+      <div class="hero-card">
+        <div class="live-dot"></div>
+        <strong>실시간 API 사용</strong>
+        <span>Open-Meteo 날씨·대기질 데이터</span>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="panel input-panel">
+      <div class="panel-head">
+        <h2>지역 선택</h2>
+        <p>학교나 집 위치를 입력하거나 현재 위치를 사용할 수 있습니다.</p>
+      </div>
+      <div class="controls">
+        <label class="field">
+          <span>지역명</span>
+          <input id="placeInput" type="text" value="Seoul" placeholder="예: Seoul, Busan, Daejeon" />
+        </label>
+        <button id="searchBtn" class="primary">지역 검색</button>
+        <button id="geoBtn" class="secondary">현재 위치 사용</button>
+      </div>
+      <p id="status" class="status">서울 기준으로 시작합니다.</p>
+    </section>
+
+    <section class="score-layout">
+      <article class="panel main-score">
+        <div class="panel-head">
+          <h2 id="locationTitle">학습 종합 지수</h2>
+          <p id="weatherSummary">데이터를 불러오는 중입니다.</p>
+        </div>
+        <div class="gauge" aria-label="종합 점수">
+          <div id="overallScore" class="gauge-score">--</div>
+          <div class="gauge-label">/ 100</div>
+        </div>
+        <p id="mainAdvice" class="advice">계산 후 추천 전략이 표시됩니다.</p>
+      </article>
+
+      <article class="panel metrics">
+        <h2>인지 영역별 지수</h2>
+        <div id="metricCards" class="metric-grid"></div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>과목별 추천</h2>
+        <p>기상 조건이 좋지 않은 날에는 고난도 사고 과목보다 복습·정리 위주로 전환하는 것이 현실적입니다.</p>
+      </div>
+      <div id="subjectCards" class="subject-grid"></div>
+    </section>
+
+    <section class="panel details">
+      <div class="panel-head">
+        <h2>사용된 환경 데이터</h2>
+        <p>API가 제공하지 못한 항목은 중립값으로 처리합니다.</p>
+      </div>
+      <div id="dataTable" class="data-grid"></div>
+    </section>
+
+    <section id="research" class="panel research">
+      <div class="panel-head">
+        <h2>점수 모델의 해석 원칙</h2>
+      </div>
+      <ol>
+        <li>폭염과 고온 다습 환경은 인지 수행을 떨어뜨릴 수 있다는 연구가 많으나, 개인차와 냉방 여부가 큽니다.</li>
+        <li>PM2.5 등 대기오염은 집중·학습 성과와 부정적 관련성이 보고됩니다.</li>
+        <li>이 프로그램은 의학적·교육학적 확정 판정이 아니라, 당일 학습 계획을 보수적으로 조정하는 도구입니다.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Study Weather Index. 비상업적 연구·학교 프로젝트용.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
